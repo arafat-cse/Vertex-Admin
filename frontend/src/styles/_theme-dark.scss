@@ -1,0 +1,46 @@
+[data-theme="dark"] {
+  --bg: #111827;
+  --bg-secondary: #1F2937;
+  --bg-tertiary: #374151;
+
+  --text: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --text-muted: #9CA3AF;
+  --text-inverse: #111827;
+
+  --card-bg: #1F1F2E;
+  --card-border: #374151;
+
+  --sidebar-bg: #1E1B4B;
+  --sidebar-text: #A78BFA;
+  --sidebar-text-active: #FFFFFF;
+  --sidebar-item-hover: rgba(124, 58, 237, 0.2);
+  --sidebar-item-active: rgba(124, 58, 237, 0.35);
+
+  --border: #374151;
+  --input-bg: #1F2937;
+  --input-border: #4B5563;
+  --input-focus-border: #7C3AED;
+  --input-text: #F9FAFB;
+  --input-placeholder: #6B7280;
+
+  --header-bg: #1F1F2E;
+  --header-border: #374151;
+
+  --table-header-bg: #1F2937;
+  --table-row-hover: #374151;
+  --table-border: #374151;
+
+  --dropdown-bg: #1F2937;
+  --dropdown-border: #374151;
+  --dropdown-item-hover: #374151;
+
+  --modal-bg: #1F1F2E;
+  --modal-overlay: rgba(0, 0, 0, 0.7);
+
+  --scrollbar-track: #1F2937;
+  --scrollbar-thumb: #4B5563;
+
+  --skeleton-base: #374151;
+  --skeleton-highlight: #4B5563;
+}

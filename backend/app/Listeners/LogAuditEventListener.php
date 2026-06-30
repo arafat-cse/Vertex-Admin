@@ -25,34 +25,34 @@ class LogAuditEventListener implements ShouldQueue
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct() {}
 
     /**
-     * Handle the event.
+     * Handle the AuditEvent by persisting a new AuditLog record.
+     *
+     * The AuditLog Eloquent model is used (rather than a raw DB insert) so that
+     * the array casting on old_values / new_values is applied consistently and
+     * the fillable guard is respected.
      */
     public function handle(AuditEvent $event): void
     {
         try {
-            DB::table('audit_logs')->insert([
-                'user_id'        => $event->user?->id,
+            AuditLog::create([
+                'user_id'        => $event->user?->getKey(),
                 'event'          => $event->event,
                 'auditable_type' => $event->auditableType,
                 'auditable_id'   => $event->auditableId,
-                'old_values'     => $event->oldValues !== null ? json_encode($event->oldValues) : null,
-                'new_values'     => $event->newValues !== null ? json_encode($event->newValues) : null,
+                'old_values'     => $event->oldValues,
+                'new_values'     => $event->newValues,
                 'ip_address'     => $event->ipAddress,
                 'user_agent'     => $event->userAgent,
-                'created_at'     => now(),
             ]);
         } catch (\Throwable $e) {
-            Log::error('Failed to log audit event', [
+            Log::error('LogAuditEventListener: failed to persist audit log', [
                 'event'          => $event->event,
                 'auditable_type' => $event->auditableType,
                 'auditable_id'   => $event->auditableId,
-                'user_id'        => $event->user?->id,
+                'user_id'        => $event->user?->getKey(),
                 'error'          => $e->getMessage(),
             ]);
 
@@ -61,15 +61,15 @@ class LogAuditEventListener implements ShouldQueue
     }
 
     /**
-     * Handle a job failure.
+     * Handle a permanently failed listener job.
      */
     public function failed(AuditEvent $event, \Throwable $exception): void
     {
-        Log::critical('LogAuditEventListener failed permanently', [
+        Log::critical('LogAuditEventListener: job failed permanently', [
             'event'          => $event->event,
             'auditable_type' => $event->auditableType,
             'auditable_id'   => $event->auditableId,
-            'user_id'        => $event->user?->id,
+            'user_id'        => $event->user?->getKey(),
             'error'          => $exception->getMessage(),
         ]);
     }

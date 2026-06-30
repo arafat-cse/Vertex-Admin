@@ -3,10 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\UserCreatedEvent;
+use App\Jobs\SendWelcomeEmailJob;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class SendWelcomeEmailListener implements ShouldQueue
 {
@@ -25,31 +25,22 @@ class SendWelcomeEmailListener implements ShouldQueue
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct() {}
 
     /**
-     * Handle the event.
+     * Handle the UserCreatedEvent by dispatching SendWelcomeEmailJob to the queue.
+     *
+     * Delegating to a dedicated job keeps the listener thin and allows the
+     * welcome email to be retried independently with its own backoff policy.
      */
     public function handle(UserCreatedEvent $event): void
     {
-        $user = $event->user;
-
         try {
-            Mail::send(
-                'emails.welcome',
-                ['user' => $user],
-                function ($message) use ($user) {
-                    $message->to($user->email, $user->name)
-                        ->subject('Welcome to ' . config('app.name', 'Vertex-Admin'));
-                }
-            );
+            SendWelcomeEmailJob::dispatch($event->user);
         } catch (\Throwable $e) {
-            Log::error('Failed to send welcome email', [
-                'user_id' => $user->id,
-                'email'   => $user->email,
+            Log::error('SendWelcomeEmailListener: failed to dispatch SendWelcomeEmailJob', [
+                'user_id' => $event->user->getKey(),
+                'email'   => $event->user->email,
                 'error'   => $e->getMessage(),
             ]);
 
@@ -58,12 +49,12 @@ class SendWelcomeEmailListener implements ShouldQueue
     }
 
     /**
-     * Handle a job failure.
+     * Handle a permanently failed listener job.
      */
     public function failed(UserCreatedEvent $event, \Throwable $exception): void
     {
-        Log::error('SendWelcomeEmailListener failed permanently', [
-            'user_id' => $event->user->id,
+        Log::critical('SendWelcomeEmailListener: job failed permanently', [
+            'user_id' => $event->user->getKey(),
             'email'   => $event->user->email,
             'error'   => $exception->getMessage(),
         ]);

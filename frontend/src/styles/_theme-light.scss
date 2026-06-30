@@ -1,0 +1,47 @@
+:root,
+[data-theme="light"] {
+  --bg: #FFFFFF;
+  --bg-secondary: #F9FAFB;
+  --bg-tertiary: #F3F4F6;
+
+  --text: #111827;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --text-inverse: #FFFFFF;
+
+  --card-bg: #FFFFFF;
+  --card-border: #E5E7EB;
+
+  --sidebar-bg: #1E1B4B;
+  --sidebar-text: #C4B5FD;
+  --sidebar-text-active: #FFFFFF;
+  --sidebar-item-hover: rgba(124, 58, 237, 0.15);
+  --sidebar-item-active: rgba(124, 58, 237, 0.25);
+
+  --border: #E5E7EB;
+  --input-bg: #FFFFFF;
+  --input-border: #D1D5DB;
+  --input-focus-border: #7C3AED;
+  --input-text: #111827;
+  --input-placeholder: #9CA3AF;
+
+  --header-bg: #FFFFFF;
+  --header-border: #E5E7EB;
+
+  --table-header-bg: #F9FAFB;
+  --table-row-hover: #F3F4F6;
+  --table-border: #E5E7EB;
+
+  --dropdown-bg: #FFFFFF;
+  --dropdown-border: #E5E7EB;
+  --dropdown-item-hover: #F3F4F6;
+
+  --modal-bg: #FFFFFF;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+
+  --scrollbar-track: #F3F4F6;
+  --scrollbar-thumb: #D1D5DB;
+
+  --skeleton-base: #E5E7EB;
+  --skeleton-highlight: #F9FAFB;
+}

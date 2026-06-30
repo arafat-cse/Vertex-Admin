@@ -1,0 +1,219 @@
+// ── Text & Background Utilities ──────────────────────────────────────────────
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-success {
+  color: var(--success) !important;
+}
+
+.text-warning {
+  color: var(--warning) !important;
+}
+
+.text-danger {
+  color: var(--danger) !important;
+}
+
+.text-info {
+  color: var(--info) !important;
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+.bg-success {
+  background-color: var(--success) !important;
+  color: #ffffff !important;
+}
+
+.bg-warning {
+  background-color: var(--warning) !important;
+  color: #ffffff !important;
+}
+
+.bg-danger {
+  background-color: var(--danger) !important;
+  color: #ffffff !important;
+}
+
+.bg-info {
+  background-color: var(--info) !important;
+  color: #ffffff !important;
+}
+
+// ── Badges ────────────────────────────────────────────────────────────────────
+
+%badge-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 9999px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.badge-success {
+  @extend %badge-base;
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #059669;
+}
+
+.badge-warning {
+  @extend %badge-base;
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #D97706;
+}
+
+.badge-danger {
+  @extend %badge-base;
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #DC2626;
+}
+
+.badge-info {
+  @extend %badge-base;
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #2563EB;
+}
+
+.badge-primary {
+  @extend %badge-base;
+  background-color: rgba(124, 58, 237, 0.15);
+  color: var(--primary);
+}
+
+.badge-neutral {
+  @extend %badge-base;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+// ── Card ─────────────────────────────────────────────────────────────────────
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.card-hover {
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    cursor: pointer;
+  }
+}
+
+.card-sm {
+  padding: 1rem;
+}
+
+.card-lg {
+  padding: 2rem;
+}
+
+// ── Button Icon ───────────────────────────────────────────────────────────────
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  &.btn-icon-sm {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+
+  &.btn-icon-lg {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+  }
+
+  &.btn-icon-danger {
+    &:hover {
+      background-color: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+    }
+  }
+
+  &.btn-icon-primary {
+    &:hover {
+      background-color: rgba(124, 58, 237, 0.1);
+      color: var(--primary);
+    }
+  }
+}
+
+// ── Divider ───────────────────────────────────────────────────────────────────
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1rem 0;
+}
+
+// ── Truncate ──────────────────────────────────────────────────────────────────
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ── Scrollbar ─────────────────────────────────────────────────────────────────
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 9999px;
+  }
+}
