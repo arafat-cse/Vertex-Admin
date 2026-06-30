@@ -3,7 +3,7 @@
         'name' => 'vertex/vertex-admin',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'eb7ce541fdb2b3c7c5a4d9b3bbae4ed4e29c9882',
+        'reference' => '3fe3b7cb6cab9422783cd7e9ce89b30109aa9d7a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1316,7 +1316,7 @@
         'vertex/vertex-admin' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'eb7ce541fdb2b3c7c5a4d9b3bbae4ed4e29c9882',
+            'reference' => '3fe3b7cb6cab9422783cd7e9ce89b30109aa9d7a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
